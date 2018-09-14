@@ -29,15 +29,19 @@ body {
     background-color: #403075;
     color: #ECEBF0; }
 
-.result .result__pos {
-  background-color: #8276AA;
-  color: #150840;
-  border-radius: 10px;
-  text-align: center;
+.result .result__item {
+  background-color: #403075;
+  color: #ECEBF0;
+  border: 2px #403075 solid;
+  border-left: 10px #403075 solid;
   font-weight: bold;
+  text-align: left;
   width: 100%;
-  margin: 10px auto;
-  padding: 5px; }
+  margin: auto;
+  padding: 8px; }
+.result .result__item:hover {
+  background-color: #8276AA;
+  color: #150840; }
 
 .footer {
   position: static;

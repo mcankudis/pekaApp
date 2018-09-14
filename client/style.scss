@@ -51,16 +51,22 @@ body { background-color: $white; }
 
 .result {
 
-  .result__pos {
+  .result__item {
+    background-color: $blue;
+    color: $white;
+
+    border: 2px $blue solid;
+    border-left: 10px $blue solid;
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+    margin: auto;
+    padding: 8px;
+  }
+
+  .result__item:hover {
     background-color: $blue-light;
     color: $blue-dark;
-
-    border-radius: 10px;
-    text-align: center;
-    font-weight: bold;
-    width: 100%;
-    margin: 10px auto;
-    padding: 5px;
   }
 
 }
