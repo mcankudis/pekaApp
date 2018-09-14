@@ -1,9 +1,21 @@
-.header {
-  background-image: linear-gradient(to bottom right, #003153, #3457D5); }
+body {
+  background-color: #ECEBF0; }
 
-.header__text {
+.header {
+  background-color: #403075;
+  width: 100vw;
+  display: flex; }
+
+.header__item {
+  border: 1px dotted black;
   color: lightgray;
-  font-size: 80px;
-  margin: 10px 0; }
+  font-size: 3rem;
+  height: 80px;
+  padding: 5px; }
+
+/*************************/
+main
+.footer {
+  background-color: #150840; }
 
 /*# sourceMappingURL=style.css.map */

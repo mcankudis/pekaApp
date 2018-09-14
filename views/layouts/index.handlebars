@@ -6,15 +6,36 @@
     <meta charset="utf-8">
 
      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+     <link rel="stylesheet" href="style.css">
   </head>
 
-  <body class="w3-white">
-    <div class="w3-container w3-blue w3-center">
-      <div class="w3-jumbo">
-        {{appName}}
+  <body>
+    <header class="header w3-container w3-card">
+
+      <div class="header__item">
+        &times;
       </div>
-    </div>
-    test
+
+      <div class="header__item">
+        {{appName}} PEKA App
+      </div>
+
+    </header>
+
+    <main>
+
+      <form class="form" method="post" action="/findStop">
+        <br>
+        <input type="text" name="firstname" placeholder="Choose your stop">
+        <input type="text" name="pattern" placeholder="User Pattern">
+        <input type="hidden" name="method" value="getStopPoints">
+        <input type="submit" value="Submit">
+      </form>
+
+    </main>
+
+    <footer class="footer w3-container">
+    </footer>
 
   </body>
 </html>
