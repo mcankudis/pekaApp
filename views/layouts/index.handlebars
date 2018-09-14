@@ -39,7 +39,9 @@
       <form class="result" method="post" action="/getBollardsByStopPoint">
       {{#each bollards}}
         {{!-- <input class="form__input form__input--submit" type="submit" name="name" value="{{this.name}}"> --}}
-        <div>{{this}}</div>
+        {{#each this.directions}}
+          {{this}}
+        {{/each}}
       {{/each}}
       </form>
 

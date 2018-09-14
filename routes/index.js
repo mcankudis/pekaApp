@@ -73,15 +73,19 @@ router.post('/getBollardsByStopPoint', (req, res) => {
       //console.log(result.success.times);
       console.log(result.success.bollards)
       // console.log(result.success.bollards[0].directions)
-      let bol = [];
-      // for(let i = 0; i<result.success.bollards.length; i++) {
-      //   for(let j = 0; j<result.success.bollards[i].directions.length; j++) {
-      //     bol += result.success.bollards[i].directions[j];
-      //   }
-      // }
+      let bol = []
+      for(let i = 0; i<result.success.bollards.length; i++) {
+        for(let j = 0; j<result.success.bollards[i].directions.length; j++) {
+          let x = {
+            direction: result.success.bollards[i].directions[j].direction,
+            line: result.success.bollards[i].directions[j].lineName
+          }
+          console.log(x);
+        }
+      }
       console.log(bol)
       res.render('index', {
-        bollards: bol
+        bollards: result
       }) 
     }
   });
