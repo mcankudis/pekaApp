@@ -5,10 +5,12 @@ const router = express.Router()
 const sanitize = require('../config/sanitize');
 
 router.get('/', (req, res) => {
-  res.render('index.handlebars');
+  res.render('index.handlebars', {
+    appName: 'pekaApp'
+  });
 })
 
-router.post('/findStop', function(req, res) {
+router.post('/findStop', (req, res) => {
   var method = req.body.method;
   var pattern = req.body.pattern;
   // sanitize section
@@ -32,11 +34,9 @@ router.post('/findStop', function(req, res) {
       } 
     };
   }
-
-
   request(options, (error, response, body) => {
-    if(error) return console.log(error);
-    else if(response.statusCode!=200) return console.log(response);
+    if(error) return res.sendStatus(401);
+    else if(response.statusCode!=200) return res.sendStatus(401);
     else {
       console.log(body);
       let result = JSON.parse(body);
@@ -46,10 +46,37 @@ router.post('/findStop', function(req, res) {
         results: result.success
       }) 
     }
-    // res.sendStatus(200);
   });
+})
 
-
+router.post('/getBollardsByStopPoint', (req, res) => {
+  var name = req.body.name;
+  if(!sanitize.verifyString(pattern)) return res.sendStatus(401);
+  const options = { 
+    method: 'POST',
+    url: 'http://www.peka.poznan.pl/vm/method.vm',
+    qs: { ts: new Date().getTime() },
+    headers: {
+      'Cache-Control': 'no-cache',
+      'Content-Type': 'application/x-www-form-urlencoded' 
+      },
+    form: {
+      method: 'getBollardsByStopPoint', p0: '{"name":'+name+'}'
+    } 
+  };
+  request(options, (error, response, body) => {
+    if(error) return res.sendStatus(401);
+    else if(response.statusCode!=200) return res.sendStatus(401);
+    else {
+      console.log(body);
+      let result = JSON.parse(body);
+      //console.log(result.success.times);
+      console.log(result)
+      res.render('index', {
+        bollards: result
+      }) 
+    }
+  });
 })
 
 // getStopPoints
