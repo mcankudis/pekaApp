@@ -1,13 +1,14 @@
 'use strict';
 const express = require('express')
+const request = require('request')
 const router = express.Router()
-// const sanitize = require('../config/sanitize');
+const sanitize = require('../config/sanitize');
 
 router.get('/', (req, res) => {
-  res.render('/index.handlebars');
+  res.render('index.html');
 })
 
-router.get('/findStop')
+// router.get('/findStop')
 
 // getStopPoints
 // Pobiera listę przystanków o nazwie pasującej do zadanego wzorca.
@@ -37,17 +38,17 @@ router.get('/findStop')
 // Zwraca wiadomości zapisane przez administrację serwisu, skojarzone z danym bollardem. Z reguły wykorzystywane do zakomunikowania czasowych zmian w rozkładzie.
 
 
-const options = {
+const options = { 
   method: 'POST',
   url: 'http://www.peka.poznan.pl/vm/method.vm',
   qs: { ts: new Date().getTime() },
   headers: {
     'Cache-Control': 'no-cache',
-    'Content-Type': 'application/x-www-form-urlencoded'
+    'Content-Type': 'application/x-www-form-urlencoded' 
     },
   form: {
     method: 'getTimes', p0: '{"symbol":"GROD02"}'
-  }
+  } 
 };
 
 request(options, (error, response, body) => {
@@ -58,3 +59,5 @@ request(options, (error, response, body) => {
     console.log(grodziska.success.times);
   }
 });
+
+module.exports = router;
