@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
 })
 
 router.post('/findStop', function(req, res) {
+  console.log(req.body)
   var method = req.body.method;
   var pattern = req.body.pattern;
   // sanitize section
@@ -16,8 +17,10 @@ router.post('/findStop', function(req, res) {
   if(!sanitize.verifyString(pattern)) return res.sendStatus(401);
   // eof sanitize section
 
+  let options;
+
   if(method=="getStopPoints") {
-    const options = { 
+    options = { 
       method: 'POST',
       url: 'http://www.peka.poznan.pl/vm/method.vm',
       qs: { ts: new Date().getTime() },
