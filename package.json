@@ -1,0 +1,19 @@
+{
+  "name": "pekaapp",
+  "version": "1.0.0",
+  "description": "Simple gui-app for Poznan's peka virtual monitor",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "peka",
+    "vm",
+    "pekavm",
+    "poznan",
+    "virtual-monitor",
+    "peka.poznan/vm"
+  ],
+  "author": "Mikołaj Cankudis",
+  "license": "ISC"
+}
