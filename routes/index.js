@@ -43,6 +43,7 @@ router.post('/findStop', function(req, res) {
       // let result = JSON.parse(body);
       // console.log(result.success.times);
     }
+    res.sendStatus(200);
   });
 
 
