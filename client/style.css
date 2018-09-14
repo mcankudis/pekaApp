@@ -1,5 +1,9 @@
 .header {
-  color: lightgray;
   background-image: linear-gradient(to bottom right, #003153, #3457D5); }
+
+.header__text {
+  color: lightgray;
+  font-size: 80px;
+  margin: 10px 0; }
 
 /*# sourceMappingURL=style.css.map */
