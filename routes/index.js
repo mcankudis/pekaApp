@@ -9,7 +9,6 @@ router.get('/', (req, res) => {
 })
 
 router.post('/findStop', function(req, res) {
-  console.log(req.body)
   var method = req.body.method;
   var pattern = req.body.pattern;
   // sanitize section
@@ -40,10 +39,14 @@ router.post('/findStop', function(req, res) {
     else if(response.statusCode!=200) return console.log(response);
     else {
       console.log(body);
-      // let result = JSON.parse(body);
-      // console.log(result.success.times);
+      let result = JSON.parse(body);
+      //console.log(result.success.times);
+      console.log(result)
+      res.render('index', {
+        results: result.success
+      }) 
     }
-    res.sendStatus(200);
+    // res.sendStatus(200);
   });
 
 
