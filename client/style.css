@@ -13,9 +13,27 @@ body {
   height: 80px;
   padding: 5px; }
 
-/*************************/
-main
+.form {
+  margin: 50px auto;
+  padding: 10px;
+  width: 50vw; }
+  .form .form__input {
+    background-color: #ECEBF0;
+    color: #150840;
+    border: 3px #403075 solid;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+    margin: 10px auto;
+    padding: 5px; }
+  .form .form__input--submit {
+    background-color: #403075;
+    color: #ECEBF0; }
+
 .footer {
+  position: static;
+  border-bottom: 0;
   background-color: #150840; }
 
 /*# sourceMappingURL=style.css.map */

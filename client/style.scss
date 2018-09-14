@@ -22,12 +22,34 @@ body {
   padding: 5px;
 }
 
-/*************************/
+.form {
 
-main
+  margin: 50px auto;
+  padding: 10px;
+  width: 50vw;
 
-/*************************/
+  .form__input {
+    background-color: $white;
+    color: $blue-dark;
+
+    border: 3px $blue solid;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+    margin: 10px auto;
+    padding: 5px;
+  }
+
+  .form__input--submit {
+    background-color: $blue;
+    color: $white;
+  }
+
+}
 
 .footer {
+  position: static;
+  border-bottom: 0;
   background-color: $blue-dark;
 }
