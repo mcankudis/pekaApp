@@ -1,0 +1,7 @@
+$blue-dark: #003153;
+$blue-light: #3457D5;
+
+.header {
+  color: lightgray;
+  background-image: linear-gradient(to bottom right, $blue-dark, $blue-light);
+}

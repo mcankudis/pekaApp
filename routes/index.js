@@ -1,10 +1,10 @@
 'use strict';
 const express = require('express')
 const router = express.Router()
-const sanitize = require('../config/sanitize');
+// const sanitize = require('../config/sanitize');
 
 router.get('/', (req, res) => {
-  res.render('views/index.html');
+  res.render('/index.handlebars');
 })
 
 router.get('/findStop')
@@ -37,17 +37,17 @@ router.get('/findStop')
 // Zwraca wiadomości zapisane przez administrację serwisu, skojarzone z danym bollardem. Z reguły wykorzystywane do zakomunikowania czasowych zmian w rozkładzie.
 
 
-const options = { 
+const options = {
   method: 'POST',
   url: 'http://www.peka.poznan.pl/vm/method.vm',
   qs: { ts: new Date().getTime() },
   headers: {
     'Cache-Control': 'no-cache',
-    'Content-Type': 'application/x-www-form-urlencoded' 
+    'Content-Type': 'application/x-www-form-urlencoded'
     },
   form: {
     method: 'getTimes', p0: '{"symbol":"GROD02"}'
-  } 
+  }
 };
 
 request(options, (error, response, body) => {
