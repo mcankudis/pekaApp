@@ -32,10 +32,10 @@
 
       <form class="result" method="post" action="/getBollardsByStopPoint">
       {{#each results}}
-        <input class="form__input form__input--submit" type="submit" name="name" value="{{this.name}}">
+        <input class="result__item" type="submit" name="name" value="{{this.name}}">
       {{/each}}
       </form>
-      
+
       <form class="result" method="post" action="/getBollardsByStopPoint">
       {{#each bollards}}
         {{!-- <input class="form__input form__input--submit" type="submit" name="name" value="{{this.name}}"> --}}
