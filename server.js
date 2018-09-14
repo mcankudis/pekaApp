@@ -1,6 +1,7 @@
 "use strict";
 const request = require('request');
 const express = require('express');
+var exphbs = require('express-handlebars');
 const app = express();
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
@@ -19,7 +20,8 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(__dirname + '/client'));
 
 // Set the view engine
-app.set('views', __dirname + '/client');
+app.set('views', __dirname + '/views');
+app.engine('handlebars', exphbs({defaultLayout:'index'}));
 app.set('view engine', 'handlebars');
 
 // These are the routes

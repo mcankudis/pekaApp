@@ -5,10 +5,45 @@ const router = express.Router()
 const sanitize = require('../config/sanitize');
 
 router.get('/', (req, res) => {
-  res.render('index.html');
+  res.render('index.handlebars');
 })
 
-// router.get('/findStop')
+router.post('/findStop', function(req, res) {
+  var method = req.body.method;
+  var pattern = req.body.pattern;
+  // sanitize section
+  if(!sanitize.verifyWord(method)) return res.sendStatus(401);
+  if(!sanitize.verifyString(pattern)) return res.sendStatus(401);
+  // eof sanitize section
+
+  if(method=="getStopPoints") {
+    const options = { 
+      method: 'POST',
+      url: 'http://www.peka.poznan.pl/vm/method.vm',
+      qs: { ts: new Date().getTime() },
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/x-www-form-urlencoded' 
+        },
+      form: {
+        method: method, p0: '{"pattern":'+pattern+'}'
+      } 
+    };
+  }
+
+
+  request(options, (error, response, body) => {
+    if(error) return console.log(error);
+    else if(response.statusCode!=200) return console.log(response);
+    else {
+      console.log(body);
+      // let result = JSON.parse(body);
+      // console.log(result.success.times);
+    }
+  });
+
+
+})
 
 // getStopPoints
 // Pobiera listę przystanków o nazwie pasującej do zadanego wzorca.
@@ -38,26 +73,6 @@ router.get('/', (req, res) => {
 // Zwraca wiadomości zapisane przez administrację serwisu, skojarzone z danym bollardem. Z reguły wykorzystywane do zakomunikowania czasowych zmian w rozkładzie.
 
 
-const options = { 
-  method: 'POST',
-  url: 'http://www.peka.poznan.pl/vm/method.vm',
-  qs: { ts: new Date().getTime() },
-  headers: {
-    'Cache-Control': 'no-cache',
-    'Content-Type': 'application/x-www-form-urlencoded' 
-    },
-  form: {
-    method: 'getTimes', p0: '{"symbol":"GROD02"}'
-  } 
-};
 
-request(options, (error, response, body) => {
-  if(error) return console.log(error);
-  else if(response.statusCode!=200) return console.log(response);
-  else {
-    let grodziska = JSON.parse(body);
-    console.log(grodziska.success.times);
-  }
-});
 
 module.exports = router;
