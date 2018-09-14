@@ -51,7 +51,7 @@ router.post('/findStop', (req, res) => {
 
 router.post('/getBollardsByStopPoint', (req, res) => {
   var name = req.body.name;
-  if(!sanitize.verifyString(pattern)) return res.sendStatus(401);
+  if(!sanitize.verifyString(name)) return res.sendStatus(401);
   const options = { 
     method: 'POST',
     url: 'http://www.peka.poznan.pl/vm/method.vm',
