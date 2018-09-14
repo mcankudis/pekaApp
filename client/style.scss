@@ -6,37 +6,35 @@ $gold: #AA9739;
 
 $font: 'Coda', cursive;
 
-body {
-  background-color: $white;
-}
+body { background-color: $white; }
 
 .header {
   // background-image: linear-gradient(to bottom right, $blue, $blue-light);
   background-color: $blue;
   width: 100vw;
   display: flex;
-}
-
-.header__item {
-  border: 1px dotted black;
-  color: lightgray;
-  font-size: 3rem;
-  height: 80px;
-  padding: 5px;
+  .header__item {
+    // border: 1px dotted black;
+    font-family: $font;
+    color: lightgray;
+    font-size: 3rem;
+    height: 80px;
+    padding: 5px;
+  }
 }
 
 .form {
 
   margin: 50px auto;
   padding: 10px;
-  width: 50vw;
+  // width: 50vw;
 
   .form__input {
     background-color: $white;
     color: $blue-dark;
 
     border: 3px $blue solid;
-    border-radius: 5px;
+    border-radius: 10px;
     text-align: center;
     font-weight: bold;
     width: 100%;
@@ -47,6 +45,23 @@ body {
   .form__input--submit {
     background-color: $blue;
     color: $white;
+  }
+
+}
+
+.result {
+
+  .result__pos {
+    background-color: $blue-light;
+    color: $blue-dark;
+
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+    margin: 10px auto;
+    padding: 5px;
+
   }
 
 }

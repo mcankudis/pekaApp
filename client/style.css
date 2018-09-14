@@ -5,23 +5,21 @@ body {
   background-color: #403075;
   width: 100vw;
   display: flex; }
-
-.header__item {
-  border: 1px dotted black;
-  color: lightgray;
-  font-size: 3rem;
-  height: 80px;
-  padding: 5px; }
+  .header .header__item {
+    font-family: "Coda", cursive;
+    color: lightgray;
+    font-size: 3rem;
+    height: 80px;
+    padding: 5px; }
 
 .form {
   margin: 50px auto;
-  padding: 10px;
-  width: 50vw; }
+  padding: 10px; }
   .form .form__input {
     background-color: #ECEBF0;
     color: #150840;
     border: 3px #403075 solid;
-    border-radius: 5px;
+    border-radius: 10px;
     text-align: center;
     font-weight: bold;
     width: 100%;
@@ -30,6 +28,16 @@ body {
   .form .form__input--submit {
     background-color: #403075;
     color: #ECEBF0; }
+
+.result .result__pos {
+  background-color: #8276AA;
+  color: #150840;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  width: 100%;
+  margin: 10px auto;
+  padding: 5px; }
 
 .footer {
   position: static;

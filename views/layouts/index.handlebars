@@ -7,6 +7,7 @@
 
      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Coda">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
      <link rel="stylesheet" href="style.css">
   </head>
 
@@ -14,16 +15,13 @@
     <header class="header w3-container w3-card">
 
       <div class="header__item">
-        &times;
-      </div>
-
-      <div class="header__item">
-        {{appName}} PEKA App
+        {{appName}} PeKaApp
       </div>
 
     </header>
 
-    <main>
+
+    <main class="w3-content">
 
       <form class="form" method="post" action="/findStop">
         <input class="form__input" type="text" name="pattern" placeholder="Przystanek" autofocus>
@@ -31,11 +29,13 @@
         <br>
         <input class="form__input form__input--submit" type="submit" value="Submit">
       </form>
-      <ul>
+
+      <form class="form" method="post" action="/getBollardsByStopPoint">
       {{#each results}}
-        <li>{{this.symbol}}</li>
+        <input class="form__input form__input--submit" type="submit" value="{{this.symbol}}">
       {{/each}}
-      </ul>
+    </form>
+
     </main>
 
   </body>
