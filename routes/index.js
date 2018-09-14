@@ -1,13 +1,14 @@
 'use strict';
 const express = require('express')
+const request = require('request')
 const router = express.Router()
 const sanitize = require('../config/sanitize');
 
 router.get('/', (req, res) => {
-  res.render('views/index.html');
+  res.render('index.html');
 })
 
-router.get('/findStop')
+// router.get('/findStop')
 
 // getStopPoints
 // Pobiera listę przystanków o nazwie pasującej do zadanego wzorca.
@@ -58,3 +59,5 @@ request(options, (error, response, body) => {
     console.log(grodziska.success.times);
   }
 });
+
+module.exports = router;

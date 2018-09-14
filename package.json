@@ -15,5 +15,12 @@
     "peka.poznan/vm"
   ],
   "author": "Mikołaj Cankudis",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "handlebars": "^4.0.12",
+    "helmet": "^3.13.0",
+    "request": "^2.88.0"
+  }
 }

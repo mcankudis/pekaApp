@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 
 // Load enviroment variables
-require('dotenv').config();
+// require('dotenv').config();
 
 // Security headers
 app.use(helmet());
@@ -21,7 +21,6 @@ app.use(express.static(__dirname + '/client'));
 // Set the view engine
 app.set('views', __dirname + '/client');
 app.set('view engine', 'handlebars');
-app.engine('html', require('ejs').renderFile);
 
 // These are the routes
 const index = require('./routes/index');
