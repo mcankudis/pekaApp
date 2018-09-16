@@ -5,9 +5,9 @@ const sanitize = {
     if(regex.test(string)) return false;                  // and if any is found, FALSE is returned;
     return true;
   },
-  verifyString: function(string) {                        // this function chcecks if the string
-    const regex = /[\$\{\}"']|(http|https|\/\/)/i;        // contains any of the forbidden characters
-    if(regex.test(string)) return false;                  // and if any is found, returns FALSE;
+  verifyString: function(string) {
+    const regex = /[\$\{\}"']|(http|https|\/\/)/i;
+    if(regex.test(string)) return false;                  
     return true;
   },
   verifyBool: function(value) {

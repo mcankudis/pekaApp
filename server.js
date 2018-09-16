@@ -28,7 +28,7 @@ app.set('view engine', 'handlebars');
 const index = require('./routes/index');
 app.use('/', index);
 
-const port = 3007;
+const port = process.env.port || 3007;
 app.listen(port, function() {
   console.log('['+new Date+'] Hi, listening on port ' + port);
 })

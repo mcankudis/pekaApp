@@ -9,6 +9,7 @@
      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Coda">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
      <link rel="stylesheet" href="style.css">
+      
   </head>
 
   <body>
@@ -25,15 +26,12 @@
 
       <form class="form" method="post" action="/findStop">
         <input class="form__input" type="text" name="pattern" placeholder="Przystanek" autofocus>
-        <input type="hidden" name="method" value="getStopPoints">
-        <br>
-        <input class="form__input form__input--submit" type="submit" value="Submit">
       </form>
 
-      <form class="result" method="post" action="/getBollardsByStopPoint">
-      {{#each results}}
+      <form class="result" method="post" action="/getBollardsByStopPoint" id="stopPointList">
+      {{!-- {{#each results}}
         <input class="result__item" type="submit" name="name" value="{{this.name}}">
-      {{/each}}
+      {{/each}} --}}
       </form>
 
       <form class="result" method="post" action="/getTimes">
@@ -57,6 +55,14 @@
       </ul>
 
     </main>
+
+    <script
+      type="text/javascript"
+			src="https://code.jquery.com/jquery-3.3.1.min.js"
+			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="app.js"></script>
 
   </body>
 </html>

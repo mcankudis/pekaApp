@@ -28,9 +28,10 @@ router.post('/findStop', (req, res) => {
   if(!sanitize.verifyString(pattern)) return res.sendStatus(401);
   // eof sanitize section
 
+    console.log(req.body)
   if(method=="getStopPoints") {
     options.form = {
-      method: method, p0: '{"pattern":'+pattern+'}'
+      method: method, p0: '{"pattern":"'+pattern+'"}'
     }
   }
   request(options, (error, response, body) => {
@@ -38,9 +39,8 @@ router.post('/findStop', (req, res) => {
     else if(response.statusCode!=200) return res.sendStatus(401);
     else {
       let result = JSON.parse(body);
-      res.render('index', {
-        results: result.success
-      }) 
+      console.log(result)
+      res.json(result.success)
     }
   });
 })
@@ -50,7 +50,7 @@ router.post('/getBollardsByStopPoint', (req, res) => {
   if(!sanitize.verifyString(name)) return res.sendStatus(401);
 
   options.form = {
-    method: 'getBollardsByStopPoint', p0: '{"name":'+name+'}'
+    method: 'getBollardsByStopPoint', p0: '{"name":"'+name+'"}'
   }
 
   request(options, (error, response, body) => {
