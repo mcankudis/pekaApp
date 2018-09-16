@@ -44,3 +44,11 @@ body {
   color: #150840; }
 
 /*# sourceMappingURL=style.css.map */
+
+
+/* ADDED BY MIKOLAJ: */
+
+.bollard__card {
+  margin-bottom: 10px;
+  border: #150840 1px solid;
+}

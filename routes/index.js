@@ -1,8 +1,18 @@
 'use strict';
-const express = require('express')
-const request = require('request')
-const router = express.Router()
+const express = require('express');
+const request = require('request');
+const router = express.Router();
 const sanitize = require('../config/sanitize');
+const options = { 
+  method: 'POST',
+  url: 'http://www.peka.poznan.pl/vm/method.vm',
+  qs: { ts: new Date().getTime() },
+  headers: {
+    'Cache-Control': 'no-cache',
+    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
+    },
+  form: {}
+};
 
 router.get('/', (req, res) => {
   res.render('index.handlebars', {
@@ -11,37 +21,23 @@ router.get('/', (req, res) => {
 })
 
 router.post('/findStop', (req, res) => {
-  var method = req.body.method;
-  var pattern = req.body.pattern;
+  let method = req.body.method;
+  let pattern = req.body.pattern;
   // sanitize section
   if(!sanitize.verifyWord(method)) return res.sendStatus(401);
   if(!sanitize.verifyString(pattern)) return res.sendStatus(401);
   // eof sanitize section
 
-  let options;
-
   if(method=="getStopPoints") {
-    options = { 
-      method: 'POST',
-      url: 'http://www.peka.poznan.pl/vm/method.vm',
-      qs: { ts: new Date().getTime() },
-      headers: {
-        'Cache-Control': 'no-cache',
-        'Content-Type': 'application/x-www-form-urlencoded' 
-        },
-      form: {
-        method: method, p0: '{"pattern":'+pattern+'}'
-      } 
-    };
+    options.form = {
+      method: method, p0: '{"pattern":'+pattern+'}'
+    }
   }
   request(options, (error, response, body) => {
     if(error) return res.sendStatus(401);
     else if(response.statusCode!=200) return res.sendStatus(401);
     else {
-      console.log(body);
       let result = JSON.parse(body);
-      //console.log(result.success.times);
-      console.log(result)
       res.render('index', {
         results: result.success
       }) 
@@ -50,46 +46,46 @@ router.post('/findStop', (req, res) => {
 })
 
 router.post('/getBollardsByStopPoint', (req, res) => {
-  var name = req.body.name;
+  let name = req.body.name;
   if(!sanitize.verifyString(name)) return res.sendStatus(401);
-  const options = { 
-    method: 'POST',
-    url: 'http://www.peka.poznan.pl/vm/method.vm',
-    qs: { ts: new Date().getTime() },
-    headers: {
-      'Cache-Control': 'no-cache',
-      'Content-Type': 'application/x-www-form-urlencoded' 
-      },
-    form: {
-      method: 'getBollardsByStopPoint', p0: '{"name":'+name+'}'
-    } 
-  };
+
+  options.form = {
+    method: 'getBollardsByStopPoint', p0: '{"name":'+name+'}'
+  }
+
   request(options, (error, response, body) => {
     if(error) return res.sendStatus(401);
     else if(response.statusCode!=200) return res.sendStatus(401);
     else {
-      console.log(body);
       let result = JSON.parse(body);
-      //console.log(result.success.times);
-      console.log(result.success.bollards)
-      // console.log(result.success.bollards[0].directions)
-      let bol = []
-      for(let i = 0; i<result.success.bollards.length; i++) {
-        for(let j = 0; j<result.success.bollards[i].directions.length; j++) {
-          let x = {
-            direction: result.success.bollards[i].directions[j].direction,
-            line: result.success.bollards[i].directions[j].lineName
-          }
-          console.log(x);
-        }
-      }
-      console.log(bol)
       res.render('index', {
-        bollards: result
+        bollards: result.success.bollards
       }) 
     }
   });
 })
+
+router.post('/getTimes', (req, res) => {
+  let symbol = req.body.symbol;
+  if(!sanitize.verifyWord(symbol)) return res.sendStatus(401);
+
+  options.form = {
+    method: 'getTimes', p0: '{"symbol":'+symbol+'}'
+  }
+  request(options, (error, response, body) => {
+    if(error) return res.sendStatus(401);
+    else if(response.statusCode!=200) return res.sendStatus(401);
+    else {
+      console.log(symbol)
+      let result = JSON.parse(body);
+      console.log(result.success.times)
+      res.render('index', {
+        times: result.success.times
+      })
+    }
+  });
+})
+
 
 // getStopPoints
 // Pobiera listę przystanków o nazwie pasującej do zadanego wzorca.

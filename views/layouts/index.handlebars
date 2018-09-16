@@ -36,14 +36,25 @@
       {{/each}}
       </form>
 
-      <form class="result" method="post" action="/getBollardsByStopPoint">
+      <form class="result" method="post" action="/getTimes">
       {{#each bollards}}
-        {{!-- <input class="form__input form__input--submit" type="submit" name="name" value="{{this.name}}"> --}}
-        {{#each this.directions}}
-          {{this}}
-        {{/each}}
+        <div class="bollard__card">
+          <input class="form__input form__input--submit" type="submit" name="symbol" value="{{this.bollard.symbol}}">
+          <h6>{{this.bollard.name}}</h6>
+          <div>
+            {{#each this.directions}}
+              <span class="direction__list__item">{{lineName}}->{{direction}}</span>
+            {{/each}}
+          </div>
+        </div>
       {{/each}}
       </form>
+
+      <ul>
+        {{#each times}}
+          <li>{{this.line}} - {{this.direction}} - {{this.minutes}} {{#if this.realTime}} GPS on {{/if}} {{#if this.onStopPoint}} na przystanku! {{/if}}</li>
+        {{/each}}
+      </ul>
 
     </main>
 
