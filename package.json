@@ -4,7 +4,9 @@
   "description": "Simple gui-app for Poznan's peka virtual monitor",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "keywords": [
     "peka",
@@ -21,6 +23,8 @@
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
     "helmet": "^3.13.0",
-    "request": "^2.88.0"
-  }
+    "request": "^2.88.0",
+    "snyk": "^1.319.1"
+  },
+  "snyk": true
 }
